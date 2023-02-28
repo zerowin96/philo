@@ -6,22 +6,26 @@
 /*   By: yeham <yeham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 11:58:09 by yeham             #+#    #+#             */
-/*   Updated: 2022/12/15 11:22:32 by yeham            ###   ########.fr       */
+/*   Updated: 2023/02/23 16:22:54 by yeham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned long long int	answer(unsigned long long int num, int buho)
+int	num_error(unsigned long long int num, int buho, int c)
 {
-	int	a;
-
-	a = num * buho;
-	if (buho == -1 && num > 9223372036854775807)
+	if (num > 922337203685477580)
+	{
+		if (buho == -1)
+			return (0);
+		else
+			return (-1);
+	}
+	if (buho == -1 && num == 922337203685477580 && c > 8)
 		return (0);
-	if (buho == 1 && num > 9223372036854775807)
+	if (buho == 1 && num == 922337203685477580 && c > 7)
 		return (-1);
-	return (a);
+	return (1);
 }
 
 int	ft_atoi(const char *str)
@@ -44,8 +48,10 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		if (num_error(num, buho, (str[i] - '0')) != 1)
+			return (num_error(num, buho, (str[i] - '0')));
 		num = num * 10 + (str[i] - '0');
 		i++;
 	}
-	return (answer(num, buho));
+	return (num * buho);
 }
