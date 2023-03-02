@@ -6,7 +6,7 @@
 /*   By: yeham <yeham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:52:13 by yeham             #+#    #+#             */
-/*   Updated: 2023/02/28 13:53:31 by yeham            ###   ########.fr       */
+/*   Updated: 2023/03/02 19:46:04 by yeham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*routine(void *argument)
 	t_info	*philo;
 
 	philo = argument;
-	if (philo->id % 2 == 0)
+	if (!(philo->id & 1))
 		usleep(1000);
 	while (1)
 		if (ft_operate(philo) == 0)

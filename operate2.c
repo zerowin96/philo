@@ -6,7 +6,7 @@
 /*   By: yeham <yeham@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:50:38 by yeham             #+#    #+#             */
-/*   Updated: 2023/02/24 15:18:18 by yeham            ###   ########.fr       */
+/*   Updated: 2023/03/02 19:47:18 by yeham            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ int	take_fork(t_info *philo)
 			return (0);
 		if (index == 0)
 		{
-			if (philo->id % 2 == 0)
-				get_fork(philo, philo->right_fork);
-			else
+			if (philo->id & 1)
 				get_fork(philo, philo->left_fork);
+			else
+				get_fork(philo, philo->right_fork);
 		}
 		else if (index == 1)
 		{
-			if (philo->id % 2 == 0)
-				get_fork(philo, philo->left_fork);
-			else
+			if (philo->id & 1)
 				get_fork(philo, philo->right_fork);
+			else
+				get_fork(philo, philo->left_fork);
 		}
 		index++;
 	}
